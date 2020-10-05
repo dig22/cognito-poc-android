@@ -1,14 +1,14 @@
 package com.example.aws_cognito_poc;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.aws_cognito_poc.utils.AuthUtil;
 
@@ -18,6 +18,8 @@ import com.example.aws_cognito_poc.utils.AuthUtil;
  * create an instance of this fragment.
  */
 public class SignUpFragment extends Fragment implements View.OnClickListener, AuthUtil.AuthObserver {
+
+    private static final String LOG_TAG = "SignUpFragment";
 
     private Button signUpButton;
     private EditText emailEditText;
@@ -42,8 +44,10 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Au
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
-        view.setOnClickListener(this);
+
         signUpButton = view.findViewById(R.id.bt_SignUp);
+        signUpButton.setOnClickListener(this);
+
         emailEditText = view.findViewById(R.id.et_email);
         passwordEditText = view.findViewById(R.id.et_password);
         otpEditText = view.findViewById(R.id.et_otp);
@@ -53,8 +57,10 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Au
 
     @Override
     public void onClick(View v) {
+        Log.i(LOG_TAG, "Clicked Somewhere!");
         if (v.getId() == R.id.bt_SignUp) {
-            authUtil.SignUpWithAWSCognito(emailEditText.getText().toString(),
+            Log.i(LOG_TAG, "Clicked!");
+            authUtil.SignUpWithAWSCognito(getContext(), emailEditText.getText().toString(),
                     passwordEditText.getText().toString());
         }
     }

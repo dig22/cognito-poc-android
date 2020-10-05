@@ -44,4 +44,5 @@ dependencies {
 
     //AWS auth
     implementation 'com.amplifyframework:aws-auth-cognito:1.4.0'
+    implementation ('com.amazonaws:aws-android-sdk-cognitoauth:2.19.0@aar') { transitive = true }
 }
