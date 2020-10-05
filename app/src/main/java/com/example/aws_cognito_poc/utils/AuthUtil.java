@@ -41,6 +41,7 @@ public class AuthUtil {
             @Override
             public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
                 Log.i(LOG_TAG, "Success : " + user.toString());
+                Log.i(LOG_TAG, "Was OTP Sent : " + signUpResult.isUserConfirmed());
             }
 
             @Override
@@ -50,5 +51,6 @@ public class AuthUtil {
         };
 
         userPool.signUpInBackground(email, password, userAttributes, null, signupCallback);
+
     }
 }
