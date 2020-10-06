@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_item_signup"
+        android:title="@string/sign_up" />
+    <item
+        android:id="@+id/menu_item_signin"
+        android:title="@string/sign_in" />
+    <item
+        android:id="@+id/menu_item_req_new_password_otp"
+        android:title="@string/reset_password" />
+    <!--    <item android:id="@+id/menu_item_reset_password" android:title="@string/reset_password" />-->
+</menu>

@@ -27,6 +27,8 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Au
     private EditText otpEditText;
     private AuthUtil authUtil;
 
+    Button verifyCodeButton;
+
     public SignUpFragment() {
         // Required empty public constructor
     }
@@ -51,6 +53,15 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Au
         emailEditText = view.findViewById(R.id.et_email);
         passwordEditText = view.findViewById(R.id.et_password);
         otpEditText = view.findViewById(R.id.et_otp);
+
+        verifyCodeButton = view.findViewById(R.id.bt_verify);
+
+        verifyCodeButton.setOnClickListener(v -> {
+            authUtil.ConfirmEmail(getContext(),
+                    emailEditText.getText().toString(),
+                    otpEditText.getText().toString());
+        });
+
         return view;
     }
 
@@ -62,6 +73,13 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Au
             Log.i(LOG_TAG, "Clicked!");
             authUtil.SignUpWithAWSCognito(getContext(), emailEditText.getText().toString(),
                     passwordEditText.getText().toString());
+
+            signUpButton.setVisibility(View.INVISIBLE);
+            passwordEditText.setVisibility(View.INVISIBLE);
+
+            otpEditText.setVisibility(View.VISIBLE);
+            verifyCodeButton.setVisibility(View.VISIBLE);
+            emailEditText.setEnabled(false);
         }
     }
 }
